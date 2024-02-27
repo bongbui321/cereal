@@ -10,6 +10,7 @@ env:
   BUILD: docker buildx build --pull --load --cache-to type=inline --cache-from $DOCKER_REGISTRY/cereal:latest -t cereal -f Dockerfile .
   PYTHONWARNINGS: error
 
+
 jobs:
   build:
     name: build
@@ -24,7 +25,6 @@ jobs:
         docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
         docker tag cereal $DOCKER_REGISTRY/cereal:latest
         docker push $DOCKER_REGISTRY/cereal:latest
-
   unit_tests:
     name: unit tests
     runs-on: ubuntu-20.04
@@ -34,8 +34,6 @@ jobs:
         backend: ['MSGQ', 'ZMQ']
     steps:
     - uses: actions/checkout@v3
-    - name: Login ghrc
-      run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
     - name: Build docker image
       run: eval "$BUILD"
     - name: C++ tests
@@ -50,7 +48,6 @@ jobs:
       run: |
         docker commit cereal cerealci
         $CI_RUN "cd /project/cereal && bash <(curl -s https://codecov.io/bash) -v -F unit_tests_${{ matrix.backend }}"
-
   static_analysis:
     name: static analysis
     runs-on: ubuntu-20.04
