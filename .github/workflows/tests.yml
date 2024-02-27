@@ -19,7 +19,7 @@ jobs:
     - name: Build docker image
       run: eval "$BUILD"
     - name: Push to dockerhub
-      if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && github.repository == 'commaai/cereal'
+      #if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && github.repository == 'commaai/cereal'
       run: |
         docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
         docker tag cereal $DOCKER_REGISTRY/cereal:latest
