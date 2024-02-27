@@ -10,7 +10,6 @@ env:
   BUILD: docker buildx build --pull --load --cache-to type=inline --cache-from type=registry,ref=ghcr.io/bongbui321/cereal:latest -t cereal -f Dockerfile .
   PYTHONWARNINGS: error
 
-
 jobs:
   build:
     name: build
