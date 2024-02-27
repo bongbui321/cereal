@@ -3,7 +3,7 @@ name: tests
 on: [push, pull_request]
 
 env:
-  DOCKER_REGISTRY: ghcr.io/commaai
+  DOCKER_REGISTRY: ghcr.io/bongbui321
   RUN: docker run -e PYTHONWARNINGS=error --shm-size 1G --name cereal cereal /bin/sh -c
   RUN_NAMED: docker run -e PYTHONWARNINGS=error --shm-size 1G --rm cereal /bin/sh -c
   CI_RUN: docker run -e GITHUB_ACTION -e GITHUB_REF -e GITHUB_HEAD_REF -e GITHUB_SHA -e GITHUB_REPOSITORY -e GITHUB_RUN_ID --rm cerealci /bin/bash -c
