@@ -34,8 +34,8 @@ jobs:
         backend: ['MSGQ', 'ZMQ']
     steps:
     - uses: actions/checkout@v3
-    - name: Login ghrc
-      run: login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Login ghcr
+      run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
     - name: Build docker image
       run: eval "$BUILD"
     - name: C++ tests
@@ -55,8 +55,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-    - name: Login ghrc
-      run: login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Login ghcr
+      run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
     - name: Build docker image
       run: eval "$BUILD"
     - name: Static analysis
